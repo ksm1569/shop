@@ -1,7 +1,6 @@
 package com.smsoft.shop.repository;
 
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.smsoft.shop.constant.ItemSellStatus;
@@ -20,8 +19,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -54,7 +51,7 @@ class ItemRepositoryTest {
     @Order(2)
     @DisplayName("상품 10개 저장 테스트")
     public void createItemListTest() {
-        for(int i=0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             Item item = new Item();
             item.setItemNm("테스트 상품" + i);
             item.setPrice(2000 + i);
@@ -73,7 +70,7 @@ class ItemRepositoryTest {
     public void findByItemNmTest() {
         List<Item> itemList = itemRepository.findByItemNm("테스트 상품2");
 
-        for(Item item : itemList) {
+        for (Item item : itemList) {
             System.out.println(item.toString());
         }
     }
@@ -106,7 +103,7 @@ class ItemRepositoryTest {
     public void findByItemDetail() {
         List<Item> itemList = itemRepository.findByItemDetail("상품 상세설명");
 
-        for(Item item : itemList) {
+        for (Item item : itemList) {
             System.out.println(item.toString());
         }
     }
@@ -129,10 +126,7 @@ class ItemRepositoryTest {
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
 
         QItem qItem = QItem.item;
-        JPAQuery<Item> query = queryFactory.selectFrom(qItem)
-                .where(qItem.itemSellStatus.eq(ItemSellStatus.SELL))
-                .where(qItem.itemDetail.like("%상품 상세설명%"))
-                .orderBy(qItem.price.desc());
+        JPAQuery<Item> query = queryFactory.selectFrom(qItem).where(qItem.itemSellStatus.eq(ItemSellStatus.SELL)).where(qItem.itemDetail.like("%상품 상세설명%")).orderBy(qItem.price.desc());
 
         List<Item> itemList = query.fetch();
 
@@ -142,7 +136,7 @@ class ItemRepositoryTest {
     }
 
     public void createItemList2() {
-        for(int i=1; i<=5; i++) {
+        for (int i = 1; i <= 5; i++) {
             Item item = new Item();
             item.setItemNm("상품" + i);
             item.setPrice(10000 + i);
@@ -155,7 +149,7 @@ class ItemRepositoryTest {
             itemRepository.save(item);
         }
 
-        for(int i=6; i<=10; i++) {
+        for (int i = 6; i <= 10; i++) {
             Item item = new Item();
             item.setItemNm("상품" + i);
             item.setPrice(10000 + i);
@@ -186,7 +180,7 @@ class ItemRepositoryTest {
         booleanBuilder.and(qItem.price.gt(price));
         System.out.println(ItemSellStatus.SELL);
 
-        if(StringUtils.equals(itemSellStat, ItemSellStatus.SELL)) {
+        if (StringUtils.equals(itemSellStat, ItemSellStatus.SELL)) {
             booleanBuilder.and(qItem.itemSellStatus.eq(ItemSellStatus.SELL));
         }
 
@@ -195,7 +189,7 @@ class ItemRepositoryTest {
         System.out.println("total elements : " + itemPagingResult.getTotalElements());
 
         List<Item> resultItemList = itemPagingResult.getContent();
-        for (Item item: resultItemList) {
+        for (Item item : resultItemList) {
             System.out.println(item.toString());
         }
     }
