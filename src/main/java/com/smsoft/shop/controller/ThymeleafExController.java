@@ -36,7 +36,7 @@ public class ThymeleafExController {
     public String thymeleafExample03(Model model) {
         List<ItemDto> itemDtoList = new ArrayList<>();
 
-        for (int i=0; i<5; i++) {
+        for (int i = 0; i < 5; i++) {
             ItemDto itemDto = new ItemDto();
             itemDto.setItemNm("상품" + i);
             itemDto.setPrice(3000 + i);
@@ -55,10 +55,10 @@ public class ThymeleafExController {
     public String thymeleafExample04(Model model) {
         List<ItemDto> itemDtoList = new ArrayList<>();
 
-        for (int i=1; i<10; i++) {
+        for (int i = 1; i < 10; i++) {
             ItemDto itemDto = new ItemDto();
             itemDto.setItemNm("상품" + i);
-            itemDto.setPrice(2000*i);
+            itemDto.setPrice(2000 * i);
             itemDto.setItemDetail("상품 상세" + i);
             itemDto.setRegTime(LocalDateTime.now());
 
@@ -81,5 +81,10 @@ public class ThymeleafExController {
         model.addAttribute("param2", param2);
 
         return "thymeleafex/thymeleafEx06";
+    }
+
+    @GetMapping(value = "/ex07")
+    public String thymeleafExample07() {
+        return "thymeleafex/thymeleafEx07";
     }
 }
