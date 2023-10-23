@@ -26,11 +26,14 @@ public class Item {
 
     @Column(name = "price", nullable = false)
     private int price;
+
     @Column(nullable = false)
     private int stockNumber;
+
     @Lob
     @Column
     private String itemDetail;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ItemSellStatus itemSellStatus;
