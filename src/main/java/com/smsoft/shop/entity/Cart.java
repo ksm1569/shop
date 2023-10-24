@@ -6,8 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 @Table(name = "cart")
 @Entity

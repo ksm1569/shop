@@ -5,8 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+
+@Getter @Setter
 @Table(name = "cart_item")
 @Entity
 public class CartItem {

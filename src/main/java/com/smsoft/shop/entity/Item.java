@@ -9,8 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Setter
-@Getter
+@Getter @Setter
 @ToString
 @Table(name = "item")
 @Entity
