@@ -15,10 +15,10 @@ import java.util.List;
 public class ItemFormDto {
     private Long id;
 
-    @NotBlank(message = "상품명은 필수 입력 입니다.")
+    @NotBlank(message = "상품명은 필수 입력입니다.")
     private String itemNm;
 
-    @NotBlank(message = "가격은 필수 입력 입니다.")
+    @NotBlank(message = "가격은 필수 입력입니다.")
     private Integer price;
     @NotBlank(message = "상품 상세는 필수 입력입니다.")
     private String itemDetail;
