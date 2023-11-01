@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+@RequiredArgsConstructor
 @RequestMapping("/members")
 @Controller
-@RequiredArgsConstructor
+
 public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
