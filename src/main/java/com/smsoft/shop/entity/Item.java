@@ -1,6 +1,7 @@
 package com.smsoft.shop.entity;
 
 import com.smsoft.shop.constant.ItemSellStatus;
+import com.smsoft.shop.dto.ItemFormDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -37,4 +38,11 @@ public class Item extends BaseEntity{
     @Column(nullable = false)
     private ItemSellStatus itemSellStatus;
 
+    public void updateItem(ItemFormDto itemFormDto) {
+        this.itemNm = itemFormDto.getItemNm();
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
 }

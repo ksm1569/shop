@@ -20,12 +20,15 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestPropertySource(locations = "classpath:application-test.properties")
 @Transactional
 @SpringBootTest
 class ItemImgServiceTest {
+
+    //AbstractGenericHttpMessageConverter
+
     @Autowired
     ItemService itemService;
 
