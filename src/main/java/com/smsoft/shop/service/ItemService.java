@@ -4,6 +4,7 @@ import ch.qos.logback.core.joran.spi.ElementSelector;
 import com.smsoft.shop.dto.ItemFormDto;
 import com.smsoft.shop.dto.ItemImgDto;
 import com.smsoft.shop.dto.ItemSearchDto;
+import com.smsoft.shop.dto.MainItemDto;
 import com.smsoft.shop.entity.Item;
 import com.smsoft.shop.entity.ItemImg;
 import com.smsoft.shop.repository.ItemImgRepository;
@@ -81,5 +82,10 @@ public class ItemService {
     @Transactional(readOnly = true)
     public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
         return itemRepository.getAdminItemPage(itemSearchDto, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MainItemDto> getMainItemDto(ItemSearchDto itemSearchDto, Pageable pageable) {
+        return itemRepository.getMainItemPage(itemSearchDto, pageable);
     }
 }
