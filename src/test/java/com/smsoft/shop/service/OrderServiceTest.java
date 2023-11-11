@@ -74,7 +74,9 @@ class OrderServiceTest {
 
         List<OrderItem> orderItems = order.getOrderItems();
 
-        //int totalPrice =
+        int totalPrice = orderDto.getCount()*item.getPrice();
+
+        assertEquals(totalPrice, order.getTotalPrice());
     }
 
 
