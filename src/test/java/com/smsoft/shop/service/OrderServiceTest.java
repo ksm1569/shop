@@ -1,6 +1,7 @@
 package com.smsoft.shop.service;
 
 import com.smsoft.shop.constant.ItemSellStatus;
+import com.smsoft.shop.constant.OrderStatus;
 import com.smsoft.shop.dto.OrderDto;
 import com.smsoft.shop.entity.Item;
 import com.smsoft.shop.entity.Member;
@@ -44,7 +45,6 @@ class OrderServiceTest {
         item.setItemNm("테스트 상품");
         item.setPrice(3000);
         item.setStockNumber(100);
-        item.setStockNumber(100);
         item.setItemDetail("상세 설명");
         item.setItemSellStatus(ItemSellStatus.SELL);
 
@@ -79,5 +79,24 @@ class OrderServiceTest {
         assertEquals(totalPrice, order.getTotalPrice());
     }
 
+    @Test
+    @DisplayName("주문 취소 테스트")
+    public void cancelOrder() {
+        Item item = saveItem();
+        Member member = saveMember();
+
+        OrderDto orderDto = new OrderDto();
+        orderDto.setCount(20);
+        orderDto.setItemId(item.getId());
+
+        Long orderId = orderService.order(orderDto, member.getEmail());
+
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(EntityNotFoundException::new);
+        orderService.cancelOrder(orderId);
+
+        assertEquals(OrderStatus.CANCEL, order.getOrderStatus());
+        assertEquals(100, item.getStockNumber());
+    }
 
 }
